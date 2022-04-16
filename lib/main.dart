@@ -1,6 +1,9 @@
+import 'package:divyajaan/screens/admin_requests.dart';
+
 import '/models/users.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'controllers/admin_request_controller.dart';
 import 'services/auth_service.dart';
 import '/authenticate/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,8 +28,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Divyangjaan',
         routes: {
-          '/':(context) => const Wrapper(),
-          '/authenticate': (context) => const Auth()
+          '/':(context) => ChangeNotifierProvider<AdminRequestControllerModel>(create: (_) => AdminRequestControllerModel(), child: AdminRequests(),),
+          '/authenticate': (context) => const Auth(),
+          '/admin_request':(context) => ChangeNotifierProvider<AdminRequestControllerModel>(create: (_) => AdminRequestControllerModel(), child: AdminRequests(),),
         },
         debugShowCheckedModeBanner: false,
       ),
