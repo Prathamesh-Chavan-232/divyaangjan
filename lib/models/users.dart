@@ -5,7 +5,9 @@ class MyUser
   final String? prn;
   MyUser({this.prn,this.userName,required this.userId,});
 
+  Future updateUserDetails() async {
 
+  }
   Future requestAid() async {
 
     /* TODO: Create a list of requests
@@ -21,11 +23,10 @@ class MyUser
     *     - PRN number & student name, disability {Object of user}
     */
   }
-
-  String status()   {
-    return "request-status";
+  void _createRequest()
+  {
+    
   }
-
 }
 
 /*

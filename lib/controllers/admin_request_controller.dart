@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import '/models/requests.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,9 +7,7 @@ import 'package:flutter/cupertino.dart';
 class AdminRequestControllerModel extends ChangeNotifier{
   final _database = FirebaseDatabase.instance.ref();
   List<RequestsWithUniqueId> _requestList = [];
-
   List<RequestsWithUniqueId> get requestList => _requestList;
-  
   late StreamSubscription<DatabaseEvent> _requestStream;
 
   AdminRequestControllerModel(){

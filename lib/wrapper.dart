@@ -1,7 +1,8 @@
+import 'package:divyajaan/screens/requests_screen/user_requests.dart';
+
+import '/screens/authenticate/auth.dart';
 import '/models/users.dart';
-import '/screens/home_screen/home_page.dart';
 import 'package:provider/provider.dart';
-import '/authenticate/auth.dart';
 import 'package:flutter/material.dart';
 
 class Wrapper extends StatefulWidget {
@@ -20,7 +21,7 @@ class _WrapperState extends State<Wrapper> {
     if (user == null) {
       return const Auth();
     } else {
-      return const HomePage();
+      return const UserRequests();
     }
   }
 }

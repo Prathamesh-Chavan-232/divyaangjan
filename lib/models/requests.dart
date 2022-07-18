@@ -74,7 +74,6 @@ class Requests {
   }
 
   String toJson() => json.encode(toMap());
-
   factory Requests.fromJson(String source) =>
       Requests.fromMap(json.decode(source));
 
