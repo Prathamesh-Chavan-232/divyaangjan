@@ -76,7 +76,7 @@ class _RequestsTabState extends State<RequestsTab> {
           setState(() {
             reqName = requestsList[i];
             singleRequest = {
-              'title': reqName,
+              'request': reqName,
               'status': "pending",
               'userDetails': {
                 'Name': "Prathamesh",

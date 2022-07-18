@@ -65,6 +65,11 @@ class Requests {
     };
   }
 
+  factory Requests.fromRTDB(Map<String, dynamic> data) {
+
+    return Requests(request: data['request'], status: data['status'], userDetails: data['userDetails']);
+  }
+
   factory Requests.fromMap(Map<String, dynamic> map) {
     return Requests(
       request: map['request'] ?? '',
