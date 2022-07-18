@@ -1,4 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:divyajaan/controllers/user_request_controller.dart';
 import 'package:flutter/material.dart';
 
 class RequestsTab extends StatefulWidget {
@@ -9,7 +9,6 @@ class RequestsTab extends StatefulWidget {
 }
 
 class _RequestsTabState extends State<RequestsTab> {
-  final _database = FirebaseDatabase.instance.ref();
   String reqName = "request";
   Map<String, dynamic> singleRequest = {};
   final List<String> requestsList = [
@@ -99,8 +98,7 @@ class _RequestsTabState extends State<RequestsTab> {
   ElevatedButton _submitButton() {
     return ElevatedButton(
       onPressed: () {
-        final reqStream = _database.child('requests');
-        reqStream.child('1032201576').push().update(singleRequest);
+        UserRequestController().createRequest(singleRequest);
       },
       child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 45),
