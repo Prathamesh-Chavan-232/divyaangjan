@@ -4,6 +4,8 @@ import 'dart:convert';
   {
     request : "",
     status : "", - Pending, Approved, Rejected
+    needDate : "",
+    acceptedBy : "",
     userDetails{
       disability : "",
       name : "",
@@ -38,21 +40,29 @@ class RequestsWithUniqueId {
 class Requests {
   String request;
   String status; // Pending, Approved, Rejected
+  String acceptedBy;
+  DateTime needDate;
   UserDetails userDetails;
   Requests({
     required this.request,
     required this.status,
+    required this.acceptedBy,
+    required this.needDate,
     required this.userDetails,
   });
 
   Requests copyWith({
     String? request,
     String? status,
+    String? acceptedBy,
+    DateTime? needDate,
     UserDetails? userDetails,
   }) {
     return Requests(
       request: request ?? this.request,
       status: status ?? this.status,
+      acceptedBy: acceptedBy ?? this.acceptedBy,
+      needDate: needDate ?? this.needDate,
       userDetails: userDetails ?? this.userDetails,
     );
   }
@@ -61,6 +71,8 @@ class Requests {
     return {
       'request': request,
       'status': status,
+      'acceptedBy': acceptedBy,
+      'needDate': needDate.toString(),
       'userDetails': userDetails.toMap(),
     };
   }
@@ -69,6 +81,8 @@ class Requests {
     return Requests(
       request: map['request'] ?? '',
       status: map['status'] ?? '',
+      acceptedBy: map['acceptedBy'] ?? '',
+      needDate: DateTime.parse(map['needDate']),
       userDetails: UserDetails.fromMap(map['userDetails']),
     );
   }
@@ -79,21 +93,30 @@ class Requests {
       Requests.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'Requests(request: $request, status: $status, userDetails: $userDetails)';
+  String toString() {
+    return 'Requests(request: $request, status: $status, acceptedBy: $acceptedBy, needDate: $needDate, userDetails: $userDetails)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is Requests &&
-        other.request == request &&
-        other.status == status &&
-        other.userDetails == userDetails;
+      other.request == request &&
+      other.status == status &&
+      other.acceptedBy == acceptedBy &&
+      other.needDate == needDate &&
+      other.userDetails == userDetails;
   }
 
   @override
-  int get hashCode => request.hashCode ^ status.hashCode ^ userDetails.hashCode;
+  int get hashCode {
+    return request.hashCode ^
+      status.hashCode ^
+      acceptedBy.hashCode ^
+      needDate.hashCode ^
+      userDetails.hashCode;
+  }
 }
 
 class UserDetails {

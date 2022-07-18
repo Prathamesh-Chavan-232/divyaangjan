@@ -17,8 +17,8 @@ class AdminRequestControllerModel extends ChangeNotifier{
     __listentoRequests();
   }
 
-  void __listentoRequests(){
-    _database.child("requests").orderByValue().onValue.listen((event) {
+  void __listentoRequests(){ 
+    _requestStream = _database.child("requests").orderByValue().onValue.listen((event) {
       _requestList = [];
       // Saving all data as a Map under Individual PRN numbers - Like {103xxxxxx6 : {uniqueId1 : {request : "", status : "", userDetails{disability : "", name : "", prn : ""}}}, {uniqueId : {request : "", status : "", userDetails{disability : "", name : "", prn : ""}}}}
       final allPrn = (jsonDecode(jsonEncode(event.snapshot.value))as Map<String, dynamic>);
@@ -31,6 +31,7 @@ class AdminRequestControllerModel extends ChangeNotifier{
       });
     notifyListeners();
     });
+
   }
 
   @override
